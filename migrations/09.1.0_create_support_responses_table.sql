@@ -1,9 +1,9 @@
 CREATE TABLE IF NOT EXISTS SupportResponses (
     ResponseID SERIAL PRIMARY KEY,
     RequestID INT REFERENCES SupportRequests(RequestID),
-    Header VARCHAR(255),
+    Header TEXT,
     Body TEXT,
-    Date TIMESTAMP
+    Date DATE
 );
 
 INSERT INTO Users (Name, Email, PhoneNumber, WalletID, SubscribeTypeID)
@@ -12,5 +12,5 @@ SELECT
     CONCAT('Header ', RANDOM() * 1000000),
     CONCAT('Body: ', RANDOM() * 1000000),
     (SELECT WalletID FROM Wallets ORDER BY RANDOM() LIMIT 1) AS WalletID,
-    NOW() + INTERVAL RAND() * 30 * INTERVAL '1 day'
+    TIMESTAMP '2004-04-06 00:00:00' + RANDOM() * (TIMESTAMP '2024-01-01 00:00:00' - TIMESTAMP '2004-04-06 00:00:00')
 FROM generate_series(1, 100000);

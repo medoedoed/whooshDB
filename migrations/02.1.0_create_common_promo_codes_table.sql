@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS CommonPromoCodes (
     PromocodeID SERIAL PRIMARY KEY,
     Discount INT,
-    Body VARCHAR(15),
+    Body TEXT,
     Date TIMESTAMP
 );
 

@@ -1,8 +1,8 @@
 CREATE TABLE IF NOT EXISTS Users (
     UserID SERIAL PRIMARY KEY,
-    Name VARCHAR(20) NOT NULL,
-    Email VARCHAR(20) NOT NULL,
-    PhoneNumber VARCHAR(20) NOT NULL,
+    Name TEXT NOT NULL,
+    Email TEXT NOT NULL,
+    PhoneNumber TEXT NOT NULL,
     WalletID INT REFERENCES Wallets(WalletID),
     SubscribeTypeID INT REFERENCES SubscribeTypes(SubscribeTypeID)
 );

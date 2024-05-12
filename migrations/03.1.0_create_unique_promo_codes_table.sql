@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS UniquePromoCodes (
     PromocodeID SERIAL PRIMARY KEY,
     Discount INT,
     Used BOOLEAN,
-    Body VARCHAR(15)
+    Body TEXT
 );
 
 INSERT INTO UniquePromoCodes (Discount, Used, Body)

@@ -6,6 +6,6 @@ CREATE TABLE IF NOT EXISTS UsedCommonPromoCodes (
 
 INSERT INTO UsedCommonPromoCodes (UserID, PromocodeID)
 SELECT
-    (SELECT UserID FROM Users ORDER BY RANDOM() LIMIT 1) AS UserID,
-    (SELECT PromocodeID FROM CommonPromoCodes ORDER BY RANDOM() LIMIT 1) AS PromocodeID
-FROM generate_series(1, 100000);
+    id,
+    FLOOR(RANDOM() * 100001)
+FROM generate_series(1, 100000) AS id;
