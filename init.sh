@@ -1,8 +1,8 @@
 #!/bin/bash
 
 target_version=$WHOOSHPOSTGRES_VERSION
-user=$USER
-db=$DB
+user=$POSTGRES_USER
+db=$POSTGRES_DB
 
 if [ -z $user ]; then
     user="postgres"
@@ -12,18 +12,16 @@ if [ -z $db ]; then
     db="postgres"
 fi
 
-migration_files="./migrations/*"
-
-for file in $migration_files; do
+for file in $( find /migrations -type f | sort ); do
     # version=$(basename "$file" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -n1)
-    
-    # if [[ "$version" < "$target_version" ]]; then
-    echo "Executing migration: $file"
-    psql -U $user -d $db -f "$file"
+
+    # echo "[LOG] Running version $version"
+
+    # if [[ "$version" <= "$target_version" ]]; then
+        echo "Executing migration: $file"
+        psql -U $user -d $db -f "$file"
     # fi
 done
-
-
 
 psql -U $user -d $db -c "CREATE ROLE reader"
 psql -U $user -d $db -c "GRANT SELECT ON ALL TABLES IN SCHEMA public TO reader"

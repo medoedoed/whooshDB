@@ -7,5 +7,5 @@ CREATE TABLE IF NOT EXISTS UsedCommonPromoCodes (
 INSERT INTO UsedCommonPromoCodes (UserID, PromocodeID)
 SELECT
     id,
-    FLOOR(RANDOM() * 100001)
+    FLOOR(RANDOM() * (SELECT MAX(PromocodeID) FROM CommonPromoCodes)) + 1
 FROM generate_series(1, 100000) AS id;
