@@ -1,1 +1,3 @@
 # WhooshDB
+
+![image](uml.png)
