@@ -15,7 +15,7 @@ fi
 for file in $( find /migrations -type f | sort ); do
     # version=$(basename "$file" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -n1)
 
-    # echo "[LOG] Running version $version"
+    #  provided coecho "[LOG] Running version $version"
 
     # if [[ "$version" <= "$target_version" ]]; then
         echo "Executing migration: $file"
