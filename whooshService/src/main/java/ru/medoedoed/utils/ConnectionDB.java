@@ -1,24 +1,16 @@
 package ru.medoedoed.utils;
 
+
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Connection {
-  Connection con = null;
+public class ConnectionDB {
+  private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
+  private static final String USER = "postgres";
+  private static final String PASSWORD = "1234";
 
-  public static Connection connectDB() {
-
-    try {
-      Connection con = DriverManager.getConnection(
-              "jdbc:mysql://localhost:3306/hotelman",
-              "root", "1234");
-      // here,root is the username and 1234 is the
-      // password,you can set your own username and
-      // password.
-      return con;
-    } catch (SQLException | ClassNotFoundException e) {
-
-      System.out.println(e);
-    }
+  public static Connection getConnection() throws SQLException {
+    return DriverManager.getConnection(URL, USER, PASSWORD);
   }
 }

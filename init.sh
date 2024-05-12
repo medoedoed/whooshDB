@@ -26,8 +26,8 @@ done
 psql -U $user -d $db -c "CREATE ROLE reader"
 psql -U $user -d $db -c "GRANT SELECT ON ALL TABLES IN SCHEMA public TO reader"
 
-psql -U $user -d $db -c "CREATE ROLE writer"
-psql -U $user -d $db -c "GRANT SELECT, UPDATE, INSERT ON ALL TABLES IN SCHEMA public TO writer"
+psql -U $user -d "$db" -c "CREATE ROLE writer"
+psql -U $user -d "$db" -c "GRANT SELECT, UPDATE, INSERT ON ALL TABLES IN SCHEMA public TO writer"
 
 psql -U $user -d $db -c "CREATE USER analytic LOGIN"
 psql -U $user -d $db -c "GRANT SELECT ON TABLE Users TO analytic"
