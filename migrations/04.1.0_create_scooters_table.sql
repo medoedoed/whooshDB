@@ -14,4 +14,4 @@ SELECT
     RANDOM() * 90 - 45 AS Latitude,
     CASE WHEN RANDOM() < 0.5 THEN TRUE ELSE FALSE END AS Available,
     FLOOR(RANDOM() * 100) AS CurrentCharge
-FROM generate_series(1, 100000) AS it;
+FROM generate_series(1, 10000) AS it;

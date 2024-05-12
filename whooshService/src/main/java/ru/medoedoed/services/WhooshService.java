@@ -30,8 +30,10 @@ public class WhooshService {
       int id = resultSet.getInt("UserId");
       String name = resultSet.getString("Name");
       String email = resultSet.getString("Email");
+      String phone = resultSet.getString("PhoneNumber");
       int walletId = resultSet.getInt("WalletId");
-      System.out.println(id + "\t\t" + name + "\t\t" + walletId);
+      int subscribeTypeId = resultSet.getInt("SubscribeTypeID");
+      System.out.println(id + "\t\t" + name + "\t\t" + email + "\t\t" + phone + "\t\t" + walletId + "\t\t" + subscribeTypeId);
     }
   }
 

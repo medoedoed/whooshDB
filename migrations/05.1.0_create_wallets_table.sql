@@ -5,6 +5,6 @@ CREATE TABLE IF NOT EXISTS Wallets (
 
 INSERT INTO Wallets (Data)
 SELECT JSON_BUILD_OBJECT(
-    'balance', RANDOM() * 100000
+    'balance', FLOOR(RANDOM() * 100000)
 ) AS Data
-FROM generate_series(1, 100000);
+FROM generate_series(1, 10000);
