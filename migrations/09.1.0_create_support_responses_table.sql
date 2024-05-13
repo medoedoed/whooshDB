@@ -6,11 +6,10 @@ CREATE TABLE IF NOT EXISTS SupportResponses (
     Date DATE
 );
 
-INSERT INTO Users (Name, Email, PhoneNumber, WalletID, SubscribeTypeID)
+INSERT INTO SupportResponses (RequestID, Header, Body, Date)
 SELECT
-    CONCAT('User', FLOOR(RANDOM() * 1000000)),
-    CONCAT('user', FLOOR(RANDOM() * 1000000), '@mail.com'),
-    CAST(RANDOM() * 1000000000 AS TEXT),
-    (SELECT WalletID FROM Wallets ORDER BY RANDOM() LIMIT 1) AS WalletID,
-    (SELECT SubscribeTypeID FROM SubscribeTypes WHERE gen IS NOT NULL ORDER BY RANDOM() LIMIT 1) AS SubscribeTypeID
+    (SELECT RequestID FROM SupportRequests WHERE gen IS NOT NULL ORDER BY RANDOM() LIMIT 1) AS RequestID,
+    CONCAT('Header: ', FLOOR(RANDOM() * 1000000)),
+    CONCAT('Body: ', FLOOR(RANDOM() * 1000000)),
+    TIMESTAMP '2004-04-06 00:00:00' + RANDOM() * (TIMESTAMP '2024-01-01 00:00:00' - TIMESTAMP '2004-04-06 00:00:00')
 FROM generate_series(1, 10000) as gen ;
