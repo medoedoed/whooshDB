@@ -40,7 +40,7 @@ public class WhooshService {
 
   // 2. Показать количество активных пользвоателей за месяц в течение 5 лет
 
-  public void showAllActiveUserForFiveYears() throws SQLException {
+  public String showAllActiveUserForFiveYears() throws SQLException {
     String query = (
             "EXPLAIN ANALYZE SELECT" +
                     "    DATE_TRUNC('month', r.startdate) AS month_year," +
@@ -55,6 +55,6 @@ public class WhooshService {
                     "ORDER BY \n" +
                     "    month_year;");
 
-    System.out.println(executeQuery(query));
+    return executeQuery(query);
   }
 }
