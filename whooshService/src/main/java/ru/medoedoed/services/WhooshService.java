@@ -2,52 +2,59 @@ package ru.medoedoed.services;
 
 import ru.medoedoed.utils.ConnectionDB;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class WhooshService {
-
-  public void showAllOrders() throws SQLException {
+  private String executeQuery(String query, Object... args) throws SQLException {
     Connection connection = ConnectionDB.getConnection();
-    PreparedStatement statement = connection.prepareStatement("select * from Orders");
-    ResultSet resultSet = statement.executeQuery();
+    PreparedStatement explanationStatement = connection.prepareStatement(query);
 
-    while (resultSet.next()) {
-      int orderId = resultSet.getInt("OrderId");
-      int userId = resultSet.getInt("UserId");
-
-      System.out.println(orderId + "\t\t" + userId);
+    for (int i = 0; i < args.length; i++) {
+      explanationStatement.setObject(i + 1, args[i]);
     }
-  }
-  public void showAllUsers() throws SQLException {
-    Connection connection = ConnectionDB.getConnection();
-    PreparedStatement statement = connection.prepareStatement("select * from Users");
-    ResultSet resultSet = statement.executeQuery();
 
+    ResultSet explanationResult = explanationStatement.executeQuery();
+    StringBuilder output = new StringBuilder();
 
-    System.out.println("id\t\tname\t\temail");
-
-    while (resultSet.next()) {
-      int id = resultSet.getInt("UserId");
-      String name = resultSet.getString("Name");
-      String email = resultSet.getString("Email");
-      String phone = resultSet.getString("PhoneNumber");
-      int walletId = resultSet.getInt("WalletId");
-      int subscribeTypeId = resultSet.getInt("SubscribeTypeID");
-      System.out.println(id + "\t\t" + name + "\t\t" + email + "\t\t" + phone + "\t\t" + walletId + "\t\t" + subscribeTypeId);
+    while (explanationResult.next()) {
+      output.append(explanationResult.getString(1)).append("\n");
     }
+
+    explanationResult.close();
+    explanationStatement.close();
+    connection.close();
+
+    return output.toString();
   }
 
-  public void showAllOrdersByUser(Long userId) throws SQLException {
-    Connection connection = ConnectionDB.getConnection();
-    PreparedStatement statement = connection.prepareStatement("select * from Orders where UserId = ?");
-    statement.setLong(1, userId);
-    ResultSet resultSet = statement.executeQuery();
-    System.out.println(userId);
+  // 1. Показать все заказы определенноо пользователя (пользователь - параметр)
 
-    while (resultSet.next()) {
-      int orderId = resultSet.getInt("UserId");
-      String name = resultSet.getString("Name");
-      System.out.println(orderId + "\t\t" + name);
-    }
+  public String showAllOrdersByUser(Long userId) throws SQLException {
+    String query = "EXPLAIN ANALYZE select * from Orders where UserId = ?";
+    return executeQuery(query, userId);
+  }
+
+
+  // 2. Показать количество активных пользвоателей за месяц в течение 5 лет
+
+  public void showAllActiveUserForFiveYears() throws SQLException {
+    String query = (
+            "EXPLAIN ANALYZE SELECT" +
+                    "    DATE_TRUNC('month', r.startdate) AS month_year," +
+                    "    COUNT(DISTINCT o.UserID) AS active_users " +
+                    "FROM " +
+                    "    Orders o " +
+                    "    JOIN Routes r ON o.RouteID = r.RouteID " +
+                    "WHERE " +
+                    "    r.startdate >= DATE_TRUNC('year', CURRENT_DATE) - INTERVAL '5 year' " +
+                    "GROUP BY " +
+                    "    DATE_TRUNC('month', r.startdate), r.startdate " +
+                    "ORDER BY \n" +
+                    "    month_year;");
+
+    System.out.println(executeQuery(query));
   }
 }

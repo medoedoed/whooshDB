@@ -7,8 +7,9 @@ import java.sql.SQLException;
 public class Main {
   public static void main(String[] args) throws SQLException {
     var service = new WhooshService();
-//    service.showAllOrders();
-    service.showAllUsers();
-//    service.showAllOrdersByUser(190539L);
+    System.out.println("-----");
+//    service.showAllActiveUserForFiveYears();
+    service.showAllOrdersByUser(368L);
+    System.out.println("-----");
   }
 }
