@@ -12,16 +12,18 @@ if [ -z $db ]; then
     db="postgres"
 fi
 
-for file in $( find /migrations -type f | sort ); do
-    # version=$(basename "$file" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -n1)
+#for file in $( find /migrations -type f | sort ); do
+#    # version=$(basename "$file" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -n1)
+#    #  provided coecho "[LOG] Running version $version"
+#    # if [[ "$version" <= "$target_version" ]]; then
+#        echo "Executing migration: $file"
+#        psql -U $user -d $db -f "$file"
+#    # fi
+#done
 
-    #  provided coecho "[LOG] Running version $version"
+psql -U $user -d $db -f "migrations/10.1.0_create_routes_table.sql"
 
-    # if [[ "$version" <= "$target_version" ]]; then
-        echo "Executing migration: $file"
-        psql -U $user -d $db -f "$file"
-    # fi
-done
+
 
 psql -U $user -d $db -c "CREATE ROLE reader"
 psql -U $user -d $db -c "GRANT SELECT ON ALL TABLES IN SCHEMA public TO reader"
