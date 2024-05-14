@@ -32,7 +32,7 @@ public class WhooshService {
 
   // 1. Показать все заказы определенноо пользователя (пользователь - параметр)
 
-  public String showAllOrdersByUser(Long userId) throws SQLException {
+  public String showAllOrdersByUser(int userId) throws SQLException {
     String query = "EXPLAIN ANALYZE select * from Orders where UserId = ?";
     return executeQuery(query, userId);
   }
