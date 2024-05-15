@@ -89,11 +89,11 @@
 
 <div style="display: flex;">
     <div style="flex: 1; margin-right: 10px;">
-        <img src="charts/5task.png" style="width: 46%;" />
+        <img src="charts/5task.png" style="width: 100%;" />
         <p style="text-align: center;">Без индексации</p>
     </div>
     <div style="flex: 1; margin-left: 10px;">
-        <img src="charts/5task1.png" style="width: 46%;" />
+        <img src="charts/5task1.png" style="width: 100%;" />
         <p style="text-align: center;">С индексацией</p>
     </div>
 </div>
