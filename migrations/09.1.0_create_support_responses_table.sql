@@ -1,9 +1,10 @@
-CREATE TABLE IF NOT EXISTS SupportResponses (
+CREATE TABLE IF NOT EXISTS SupportResponses
+(
     ResponseID SERIAL PRIMARY KEY,
-    RequestID INT REFERENCES SupportRequests(RequestID),
-    Header TEXT,
-    Body TEXT,
-    Date DATE
+    RequestID  INT REFERENCES SupportRequests (RequestID),
+    Header     TEXT,
+    Body       TEXT,
+    Date       DATE
 );
 
 INSERT INTO SupportResponses (RequestID, Header, Body, Date)

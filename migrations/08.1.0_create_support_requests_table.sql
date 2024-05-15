@@ -1,4 +1,11 @@
-c
+CREATE TABLE IF NOT EXISTS SupportRequests(
+    RequestID SERIAL PRIMARY KEY,
+    Header    TEXT,
+    Body      TEXT,
+    Date      DATE,
+    Solved    BOOLEAN,
+    UserID    INT REFERENCES Users (UserID)
+);
 
 INSERT INTO SupportRequests (Header, Body, Date, Solved, UserID)
 SELECT

@@ -21,10 +21,9 @@ for file in $( find /migrations -type f | sort ); do
     # fi
 done
 
-
-
-
-
+if [[ $INDEXATION == true ]]; then
+  ./indexations/indexation.sh
+fi
 psql -U $user -d $db -c "CREATE ROLE reader"
 psql -U $user -d $db -c "GRANT SELECT ON ALL TABLES IN SCHEMA public TO reader"
 

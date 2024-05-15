@@ -82,19 +82,11 @@ public class WhooshService {
     String query = (
             "EXPLAIN ANALYZE " +
                     "SELECT " +
-                    "sr.RequestID, " +
-                    "sr.Header AS RequestHeader, " +
-                    "sr.Body AS RequestBody, " +
-                    "sr.Date AS RequestDate, " +
-                    "sr.Solved, " +
-                    "srs.ResponseID, " +
-                    "srs.Header AS ResponseHeader, " +
-                    "srs.Body AS ResponseBody, " +
-                    "srs.Date AS ResponseDate " +
-                    "FROM SupportRequests sr " +
-                    "LEFT JOIN SupportResponses srs ON sr.RequestID = srs.RequestID " +
-                    "WHERE sr.UserID = ? " +
-                    "ORDER BY sr.Date, srs.Date;"
+                    "* " +
+                    "FROM SupportRequests srq " +
+                    "LEFT JOIN SupportResponses srp ON srq.RequestID = srp.RequestID " +
+                    "WHERE srq.UserID = ? " +
+                    "ORDER BY srq.Date, srp.Date;"
     );
 
     return executeQuery(query, userId);
@@ -113,12 +105,7 @@ public class WhooshService {
     String query = (
             "EXPLAIN ANALYZE " +
                     "SELECT " +
-                    "ScooterID, " +
-                    "ScooterNumber, " +
-                    "Longitude, " +
-                    "Latitude, " +
-                    "Available, " +
-                    "CurrentCharge " +
+                    "* " +
                     "FROM Scooters " +
                     "WHERE " +
                     "SQRT(POW(Longitude - ?, 2) + POW(Latitude - ?, 2)) <= ? ");
@@ -136,12 +123,11 @@ public class WhooshService {
     String query =
             ("EXPLAIN ANALYZE " +
                     "SELECT " +
-                    "    u.UserID, " +
-                    "    u.Name, " +
-                    "    SUM(o.Cost) AS TotalSpent " +
+                    "u.UserID, " +
+                    "SUM(o.Cost) AS TotalSpent " +
                     "FROM Orders o " +
                     "JOIN Users u ON o.UserID = u.UserID " +
-                    "GROUP BY u.UserID, u.Name " +
+                    "GROUP BY u.UserID " +
                     "ORDER BY TotalSpent DESC " +
                     "LIMIT 100;");
     return executeQuery(query);

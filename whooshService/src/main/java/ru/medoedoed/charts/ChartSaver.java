@@ -13,7 +13,7 @@ public class ChartSaver {
 
     int version = 1;
     while (new File(newFileName).exists()) {
-      newFileName = baseFileName.replace(".png(", version + ").png");
+      newFileName = baseFileName.replace(".png", version + ".png");
       version++;
 
     }

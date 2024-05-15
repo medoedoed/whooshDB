@@ -11,8 +11,10 @@ services:
       PGDATA: "/var/lib/postgresql/data/pgdata"
       WHOOSHPOSTGRES_VERSION: "11.0.0"
       USERS: "admin,name"
+      INDEXATION: true
     volumes:
       - ./migrations:/migrations/
+      - ./indexations:/indexations/
       - whooshpostgres-data:/var/lib/postgresql/data
       - ./init.sh:/docker-entrypoint-initdb.d/init.sh
     ports:
