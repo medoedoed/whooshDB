@@ -7,13 +7,13 @@ import java.io.File;
 import java.io.IOException;
 
 public class ChartSaver {
-  public void save(Chart chart) throws IOException {
-    String baseFileName = "./charts/chart.png";
+  public void save(Chart chart, String name) throws IOException {
+    String baseFileName = "./charts/" + name + ".png";
     String newFileName = baseFileName;
 
     int version = 1;
     while (new File(newFileName).exists()) {
-      newFileName = baseFileName.replace(".png", version + ".png");
+      newFileName = baseFileName.replace(".png(", version + ").png");
       version++;
 
     }

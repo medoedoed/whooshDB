@@ -23,6 +23,8 @@ done
 
 
 
+
+
 psql -U $user -d $db -c "CREATE ROLE reader"
 psql -U $user -d $db -c "GRANT SELECT ON ALL TABLES IN SCHEMA public TO reader"
 
