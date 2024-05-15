@@ -46,7 +46,6 @@ public class WhooshService {
     return executeQuery(query, userId);
   }
 
-
   /**
    * 2. Показать количество активных пользвоателей за месяц в течение 5 лет
    * @return Explain String
@@ -147,6 +146,4 @@ public class WhooshService {
                     "LIMIT 100;");
     return executeQuery(query);
   }
-
 }
-
