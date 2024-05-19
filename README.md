@@ -34,14 +34,13 @@
 
 1. Отобразить все заказы конкретного пользователя, где пользователь - параметр.
 <div style="display: flex;"> 
-    <div style="flex: 1; margin-right: 2%;"> 
-        <img src="charts/1task.png" style="width: 30%; margin-right: 2%;"  alt=""/> 
-        <p style="text-align: center;">Без индексации</p> 
-    </div> 
-        <div style="flex: 1; margin-left: 2%;"> 
-        <img src="charts/1task1.png" style="width: 30%; margin-right: 2%;"  alt=""/> 
-        <p style="text-align: center;">С индексацией</p> 
-    </div> 
+    <img src="charts/1task.png" style="width: 48%; margin-right: 2%;" alt=""> 
+    <img src="charts/1task1.png" style="width: 48%; margin-left: 2%;" alt=""> 
+</div>
+3. Показать все сообщения из определенного респонса и отсортировать их по времени.
+<div style="display: flex;"> 
+    <img src="charts/3task.png" style="width: 48%; margin-right: 2%;" alt=""> 
+    <img src="charts/3task1.png" style="width: 48%; margin-left: 2%;" alt="">
 </div>
 2. Показать количество активных пользователей за месяц в течение последних 5 лет.
 <div style="display: flex;"> 
