@@ -37,11 +37,6 @@
     <img src="charts/1task.png" style="width: 48%; margin-right: 2%;" alt=""> 
     <img src="charts/1task1.png" style="width: 48%; margin-left: 2%;" alt=""> 
 </div>
-3. Показать все сообщения из определенного респонса и отсортировать их по времени.
-<div style="display: flex;"> 
-    <img src="charts/3task.png" style="width: 48%; margin-right: 2%;" alt=""> 
-    <img src="charts/3task1.png" style="width: 48%; margin-left: 2%;" alt="">
-</div>
 2. Показать количество активных пользователей за месяц в течение последних 5 лет.
 <div style="display: flex;"> 
     <img src="charts/2task.png" style="width: 48%; margin-right: 2%;" alt=""> 
