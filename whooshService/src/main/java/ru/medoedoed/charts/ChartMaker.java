@@ -25,7 +25,7 @@ public class ChartMaker {
 
     XYChart chart = new XYChartBuilder().width(800).height(600).xAxisTitle("index").yAxisTitle("Time, ms").build();
 
-    chart.addSeries("Active user query", index, times);
+    chart.addSeries("Query time", index, times);
 
     chart.addSeries("Lowest time: " + min, Collections.singletonList(0), Collections.singletonList(min));
     chart.addSeries("Highest time: " + max, Collections.singletonList(0), Collections.singletonList(max));

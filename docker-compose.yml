@@ -9,7 +9,7 @@ services:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "1234"
       PGDATA: "/var/lib/postgresql/data/pgdata"
-      WHOOSHPOSTGRES_VERSION: "11.0.0"
+      WHOOSHPOSTGRES_VERSION: "11.0.0"crea
       USERS: "admin,name"
       INDEXATION: true
     volumes:
