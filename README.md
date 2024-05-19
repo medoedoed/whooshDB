@@ -35,11 +35,11 @@
 1. Отобразить все заказы конкретного пользователя, где пользователь - параметр.
 <div style="display: flex;"> 
     <div style="flex: 1; margin-right: 10px;"> 
-        <img src="charts/1task.png" style="width: 48%; margin-right: 2%;"  alt=""/> 
+        <img src="charts/1task.png" style="width: 30%; margin-right: 2%;"  alt=""/> 
         <p style="text-align: center;">Без индексации</p> 
     </div> 
         <div style="flex: 1; margin-left: 10px;"> 
-        <img src="charts/1task1.png" style="width: 48%; margin-right: 2%;"  alt=""/> 
+        <img src="charts/1task1.png" style="width: 30%; margin-right: 2%;"  alt=""/> 
         <p style="text-align: center;">С индексацией</p> 
     </div> 
 </div>
