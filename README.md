@@ -61,5 +61,9 @@
     <img src="charts/5task1.png" style="width: 48%; margin-left: 2%;" alt=""> 
 </div> 
 
+    Показания после добавления партиции: 
+<div style="display: flex;"> 
+    <img src="charts/5task2.png" style="width: 48%; margin-right: 2%;" alt=""> 
 
+</div> 
 

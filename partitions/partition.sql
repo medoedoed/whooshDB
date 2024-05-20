@@ -1,12 +1,12 @@
 create table orders_demo
 (
-    OrderID           SERIAL PRIMARY KEY,
-    UserID            INT REFERENCES Users (UserID),
-    ScooterID         INT REFERENCES Scooters (ScooterID),
+    OrderID           INT,
+    UserID            INT,
+    ScooterID         INT,
     Cost              INT,
-    CommonPromocodeID INT REFERENCES CommonPromoCodes (PromocodeID),
-    UniquePromocodeID INT REFERENCES UniquePromoCodes (PromocodeID),
-    RouteID           INT REFERENCES Routes (RouteID)
+    CommonPromocodeID INT,
+    UniquePromocodeID INT,
+    RouteID           INT
 ) partition by range(cost);
 
 create table cost050 (like orders_demo including indexes);

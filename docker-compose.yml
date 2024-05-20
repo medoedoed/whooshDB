@@ -14,7 +14,7 @@ services:
     volumes:
       - ./migrations:/migrations/
       - ./indexations:/indexations/
-      - ./paritions:/partitions/
+      - ./partitions:/partitions/
       - whooshpostgres-data:/var/lib/postgresql/data
       - ./init.sh:/docker-entrypoint-initdb.d/init.sh
     ports:
