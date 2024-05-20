@@ -9,9 +9,9 @@ CREATE TABLE IF NOT EXISTS Users (
 
 INSERT INTO Users (Name, Email, PhoneNumber, WalletID, SubscribeTypeID)
 SELECT
-    CONCAT('User', RANDOM() * 100000) AS Name,
-    CONCAT('user', RANDOM() * 100000, '@mail.com') AS Email,
-    CONCAT('+', RANDOM() * 100000000) AS PhoneNumber,
-    (SELECT WalletID FROM Wallets ORDER BY RANDOM() LIMIT 1) AS WalletID,
-    (SELECT SubscribeTypeID FROM SubscribeTypes ORDER BY RANDOM() LIMIT 1) AS SubscribeTypeID
-FROM generate_series(1, 100000);
+    CONCAT('User', FLOOR(RANDOM() * 100000)) AS Name,
+    CONCAT('user', FLOOR(RANDOM() * 100000), '@mail.com') AS Email,
+    CONCAT('+', FLOOR(RANDOM() * 10000000)) AS PhoneNumber,
+    (SELECT WalletID FROM Wallets WHERE gen IS NOT NULL ORDER BY RANDOM() OFFSET FLOOR(RANDOM() * (SELECT COUNT(*) FROM Wallets)) LIMIT 1) AS WalletID,
+    (SELECT SubscribeTypeID FROM SubscribeTypes WHERE gen IS NOT NULL ORDER BY RANDOM() LIMIT 1) AS SubscribeTypeID
+FROM generate_series(1, 10000) as gen;

@@ -1,0 +1,7 @@
+/.idea/
+/whooshService/.gradle/
+/whooshService/gradle/
+pg_hba.conf
+/bin/
+/whooshService.iml
+/whooshService/build/
