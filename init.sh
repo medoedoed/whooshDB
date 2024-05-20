@@ -17,12 +17,16 @@ for file in $( find /migrations -type f | sort ); do
     #  provided coecho "[LOG] Running version $version"
     # if [[ "$version" <= "$target_version" ]]; then
         echo "Executing migration: $file"
-        psql -U $user -d $db -f "$file"
+        psql -U "$user" -d "$db" -f "$file"
     # fi
 done
 
 if [[ $INDEXATION == true ]]; then
   ./indexations/indexation.sh
+fi
+
+if [[ $PARTITION_ORDERS == true ]]; then
+  psql -U "$user" -d "$db" -f ./partitions/partition.sql
 fi
 psql -U $user -d $db -c "CREATE ROLE reader"
 psql -U $user -d $db -c "GRANT SELECT ON ALL TABLES IN SCHEMA public TO reader"
