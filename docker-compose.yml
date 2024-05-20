@@ -11,6 +11,8 @@ services:
       USERS: "admin,name"
       INDEXATION: true
       PARTITION_ORDERS: true
+      BACKUPS_ALLOWED: 5
+      BACKUP_FREQUENCY: 12
     volumes:
       - ./migrations:/migrations/
       - ./indexations:/indexations/
